@@ -4,6 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://bj0ksyfkgx5dw" path="res://assets/BaT_v2.0/randomСolor/single_textures/texture185.png" id="2_rwgxs"]
 [ext_resource type="Shader" uid="uid://b6p3w4wy8saj3" path="res://assets/shaders/nobackground.gdshader" id="3_k0juu"]
 [ext_resource type="Texture2D" uid="uid://dxsmt2ueyo43k" path="res://assets/items/nightlamp.png" id="4_71j4m"]
+[ext_resource type="Script" uid="uid://ddmwcyehdwdb4" path="res://scripts/light_toggle_property.gd" id="6_i7141"]
+[ext_resource type="Texture2D" uid="uid://dati2joat0nxa" path="res://assets/items/headlamp.png" id="6_qfnet"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nnsk1"]
 texture = ExtResource("1_nnsk1")
@@ -28,9 +30,8 @@ light_mode = 1
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_k0juu"]
 shader = ExtResource("3_k0juu")
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_71j4m"]
-radius = 34.0
-height = 96.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_qfnet"]
+radius = 38.72752
 
 [sub_resource type="Gradient" id="Gradient_qfnet"]
 interpolation_mode = 2
@@ -40,6 +41,10 @@ colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 gradient = SubResource("Gradient_qfnet")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_71j4m"]
+radius = 34.0
+height = 96.0
 
 [node name="World" type="Node2D" unique_id=1337490270]
 
@@ -56,12 +61,37 @@ tile_set = SubResource("TileSet_k0juu")
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1423606406]
 color = Color(0.20152658, 0.20152658, 0.20152658, 1)
 
+[node name="Headlamp" type="StaticBody2D" parent="." unique_id=240002425]
+material = SubResource("CanvasItemMaterial_k0juu")
+position = Vector2(-3, -263)
+
+[node name="HeadlampSprite" type="Sprite2D" parent="Headlamp" unique_id=1998472072]
+material = SubResource("ShaderMaterial_k0juu")
+scale = Vector2(5, 5)
+texture = ExtResource("6_qfnet")
+flip_h = true
+
+[node name="HeadlampCollider" type="CollisionShape2D" parent="Headlamp" unique_id=2128869690]
+shape = SubResource("CircleShape2D_qfnet")
+
+[node name="HeadlampLight" type="PointLight2D" parent="Headlamp" unique_id=1441454846]
+position = Vector2(0, 5.4786377)
+scale = Vector2(32.34764, 22.015623)
+energy = 0.8
+texture = SubResource("GradientTexture2D_i7141")
+
+[node name="LightToggleProperty" type="Node2D" parent="Headlamp" unique_id=1110450900 node_paths=PackedStringArray("light", "collider")]
+position = Vector2(377.12457, -67.31915)
+script = ExtResource("6_i7141")
+light = NodePath("../HeadlampLight")
+collider = NodePath("../HeadlampCollider")
+
 [node name="Nightlamp" type="StaticBody2D" parent="." unique_id=2005756852]
 material = SubResource("CanvasItemMaterial_k0juu")
 position = Vector2(-377.12457, 67.31915)
+input_pickable = true
 
 [node name="NightlampSprite" type="Sprite2D" parent="Nightlamp" unique_id=1915874602]
-material = SubResource("ShaderMaterial_k0juu")
 scale = Vector2(5, 5)
 texture = ExtResource("4_71j4m")
 flip_h = true
@@ -71,7 +101,13 @@ shape = SubResource("CapsuleShape2D_71j4m")
 
 [node name="NightlampLight" type="PointLight2D" parent="Nightlamp" unique_id=1215991896]
 scale = Vector2(32.34764, 20.541222)
-blend_mode = 2
+energy = 0.6
 texture = SubResource("GradientTexture2D_i7141")
+
+[node name="LightToggleProperty" type="Node2D" parent="Nightlamp" unique_id=747558276 node_paths=PackedStringArray("light", "collider")]
+position = Vector2(377.12457, -67.31915)
+script = ExtResource("6_i7141")
+light = NodePath("../NightlampLight")
+collider = NodePath("../NightlampCollider")
 
 [node name="Camera" type="Camera2D" parent="." unique_id=1646947253]
