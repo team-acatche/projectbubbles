@@ -2,10 +2,20 @@
 
 [ext_resource type="Texture2D" uid="uid://hre7en2j6oy5" path="res://assets/items/wall.png" id="1_nnsk1"]
 [ext_resource type="Texture2D" uid="uid://bj0ksyfkgx5dw" path="res://assets/BaT_v2.0/randomСolor/single_textures/texture185.png" id="2_rwgxs"]
-[ext_resource type="Shader" uid="uid://b6p3w4wy8saj3" path="res://assets/shaders/nobackground.gdshader" id="3_k0juu"]
+[ext_resource type="Script" uid="uid://b0kkvky4l1kkg" path="res://scripts/interactible.gd" id="3_w7kh3"]
+[ext_resource type="Texture2D" uid="uid://xlwoedhitk5x" path="res://assets/items/outlet.png" id="4_4mrxx"]
 [ext_resource type="Texture2D" uid="uid://dxsmt2ueyo43k" path="res://assets/items/nightlamp.png" id="4_71j4m"]
-[ext_resource type="Script" uid="uid://ddmwcyehdwdb4" path="res://scripts/light_toggle_property.gd" id="6_i7141"]
+[ext_resource type="Script" uid="uid://c1jesw05hr5vn" path="res://scripts/light_toggle.gd" id="5_e3hyu"]
+[ext_resource type="Texture2D" uid="uid://dlb6ten6li0s1" path="res://assets/items/door.png" id="6_4mrxx"]
+[ext_resource type="Texture2D" uid="uid://bldsrcv4n5om4" path="res://assets/items/nightstand.png" id="6_dss4m"]
 [ext_resource type="Texture2D" uid="uid://dati2joat0nxa" path="res://assets/items/headlamp.png" id="6_qfnet"]
+[ext_resource type="Texture2D" uid="uid://bdqt5egudp1ys" path="res://assets/items/stool.png" id="7_i7141"]
+[ext_resource type="Script" uid="uid://yia3j8tmgqx5" path="res://scripts/sprite_toggle.gd" id="7_o8fc1"]
+[ext_resource type="Texture2D" uid="uid://c2jfxrdne7tyk" path="res://assets/items/nightlamp_with_wire.png" id="7_xo05s"]
+[ext_resource type="Texture2D" uid="uid://8ipst7b2hcob" path="res://assets/items/wire.png" id="8_dss4m"]
+[ext_resource type="Texture2D" uid="uid://bfa858e0cjs3r" path="res://assets/items/bed.png" id="9_7r4gi"]
+[ext_resource type="Texture2D" uid="uid://bd732jcfdbv5o" path="res://assets/items/outlet_with_plug.png" id="10_7t5mc"]
+[ext_resource type="Texture2D" uid="uid://dn11vl48ceacw" path="res://assets/items/open_door.png" id="13_xo05s"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nnsk1"]
 texture = ExtResource("1_nnsk1")
@@ -27,12 +37,6 @@ sources/1 = SubResource("TileSetAtlasSource_rwgxs")
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_k0juu"]
 light_mode = 1
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_k0juu"]
-shader = ExtResource("3_k0juu")
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_qfnet"]
-radius = 38.72752
-
 [sub_resource type="Gradient" id="Gradient_qfnet"]
 interpolation_mode = 2
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
@@ -42,9 +46,18 @@ gradient = SubResource("Gradient_qfnet")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_qfnet"]
+radius = 38.72752
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_71j4m"]
 radius = 34.0
 height = 96.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7r4gi"]
+radius = 15.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7r4gi"]
+size = Vector2(96, 92)
 
 [node name="World" type="Node2D" unique_id=1337490270]
 
@@ -61,53 +74,123 @@ tile_set = SubResource("TileSet_k0juu")
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1423606406]
 color = Color(0.20152658, 0.20152658, 0.20152658, 1)
 
-[node name="Headlamp" type="StaticBody2D" parent="." unique_id=240002425]
+[node name="Headlamp" type="StaticBody2D" parent="." unique_id=240002425 node_paths=PackedStringArray("collider_shape")]
 material = SubResource("CanvasItemMaterial_k0juu")
-position = Vector2(-3, -263)
+position = Vector2(0, -286)
+script = ExtResource("3_w7kh3")
+collider_shape = NodePath("HeadlampCollider")
 
-[node name="HeadlampSprite" type="Sprite2D" parent="Headlamp" unique_id=1998472072]
-material = SubResource("ShaderMaterial_k0juu")
-scale = Vector2(5, 5)
-texture = ExtResource("6_qfnet")
-flip_h = true
+[node name="HeadlampLight" type="PointLight2D" parent="Headlamp" unique_id=1441454846]
+scale = Vector2(32.34764, 22.015623)
+energy = 0.8
+texture = SubResource("GradientTexture2D_i7141")
+script = ExtResource("5_e3hyu")
 
 [node name="HeadlampCollider" type="CollisionShape2D" parent="Headlamp" unique_id=2128869690]
 shape = SubResource("CircleShape2D_qfnet")
 
-[node name="HeadlampLight" type="PointLight2D" parent="Headlamp" unique_id=1441454846]
-position = Vector2(0, 5.4786377)
-scale = Vector2(32.34764, 22.015623)
-energy = 0.8
-texture = SubResource("GradientTexture2D_i7141")
-
-[node name="LightToggleProperty" type="Node2D" parent="Headlamp" unique_id=1110450900 node_paths=PackedStringArray("light", "collider")]
-position = Vector2(377.12457, -67.31915)
-script = ExtResource("6_i7141")
-light = NodePath("../HeadlampLight")
-collider = NodePath("../HeadlampCollider")
+[node name="HeadlampSprite" type="Sprite2D" parent="Headlamp" unique_id=1998472072]
+scale = Vector2(5, 5)
+texture = ExtResource("6_qfnet")
+flip_h = true
 
 [node name="Nightlamp" type="StaticBody2D" parent="." unique_id=2005756852]
 material = SubResource("CanvasItemMaterial_k0juu")
-position = Vector2(-377.12457, 67.31915)
+position = Vector2(-224, 54)
 input_pickable = true
-
-[node name="NightlampSprite" type="Sprite2D" parent="Nightlamp" unique_id=1915874602]
-scale = Vector2(5, 5)
-texture = ExtResource("4_71j4m")
-flip_h = true
-
-[node name="NightlampCollider" type="CollisionShape2D" parent="Nightlamp" unique_id=1170759008]
-shape = SubResource("CapsuleShape2D_71j4m")
 
 [node name="NightlampLight" type="PointLight2D" parent="Nightlamp" unique_id=1215991896]
 scale = Vector2(32.34764, 20.541222)
 energy = 0.6
 texture = SubResource("GradientTexture2D_i7141")
+script = ExtResource("5_e3hyu")
 
-[node name="LightToggleProperty" type="Node2D" parent="Nightlamp" unique_id=747558276 node_paths=PackedStringArray("light", "collider")]
-position = Vector2(377.12457, -67.31915)
-script = ExtResource("6_i7141")
-light = NodePath("../NightlampLight")
-collider = NodePath("../NightlampCollider")
+[node name="NightlampCollider" type="CollisionShape2D" parent="Nightlamp" unique_id=1170759008]
+shape = SubResource("CapsuleShape2D_71j4m")
+
+[node name="NightstandSprite" type="Sprite2D" parent="Nightlamp" unique_id=1747574941]
+position = Vector2(0, 101)
+scale = Vector2(5, 12)
+texture = ExtResource("6_dss4m")
+
+[node name="NightlampWithWireSprite" type="Sprite2D" parent="Nightlamp" unique_id=266586318 node_paths=PackedStringArray("alternative_sprite")]
+scale = Vector2(5, 5)
+texture = ExtResource("7_xo05s")
+script = ExtResource("7_o8fc1")
+alternative_sprite = NodePath("../NightlampSprite")
+
+[node name="WireSprite" type="Sprite2D" parent="Nightlamp/NightlampWithWireSprite" unique_id=1590606321]
+position = Vector2(13.600002, 14.1361685)
+scale = Vector2(0.79999995, 0.79999995)
+texture = ExtResource("8_dss4m")
+
+[node name="NightlampSprite" type="Sprite2D" parent="Nightlamp" unique_id=1915874602]
+visible = false
+scale = Vector2(5, 5)
+texture = ExtResource("4_71j4m")
+flip_h = true
+
+[node name="Outlet" type="StaticBody2D" parent="." unique_id=91285778 node_paths=PackedStringArray("collider_shape")]
+position = Vector2(-96, 182)
+scale = Vector2(4, 4)
+script = ExtResource("3_w7kh3")
+collider_shape = NodePath("OutletShape")
+
+[node name="OutletWithWireSprite" type="Sprite2D" parent="Outlet" unique_id=172076461 node_paths=PackedStringArray("alternative_sprite")]
+texture = ExtResource("10_7t5mc")
+script = ExtResource("7_o8fc1")
+alternative_sprite = NodePath("../OutletSprite")
+
+[node name="OutletSprite" type="Sprite2D" parent="Outlet" unique_id=666751696]
+visible = false
+texture = ExtResource("4_4mrxx")
+
+[node name="OutletShape" type="CollisionShape2D" parent="Outlet" unique_id=768519919]
+position = Vector2(0, 1)
+scale = Vector2(0.5, 0.5)
+shape = SubResource("CircleShape2D_7r4gi")
+
+[node name="Door" type="StaticBody2D" parent="." unique_id=487828073 node_paths=PackedStringArray("collider_shape")]
+material = SubResource("CanvasItemMaterial_k0juu")
+position = Vector2(465, 50.000004)
+scale = Vector2(2, 3)
+input_pickable = true
+script = ExtResource("3_w7kh3")
+collider_shape = NodePath("DoorCollider")
+
+[node name="ClosedDoorSprite" type="Sprite2D" parent="Door" unique_id=953339105 node_paths=PackedStringArray("alternative_sprite")]
+scale = Vector2(5, 5)
+texture = ExtResource("6_4mrxx")
+flip_h = true
+script = ExtResource("7_o8fc1")
+alternative_sprite = NodePath("../OpenDoorSprite")
+
+[node name="OpenDoorSprite" type="Sprite2D" parent="Door" unique_id=569000589]
+visible = false
+position = Vector2(-2.5, -1.2715657e-06)
+scale = Vector2(4.82, 5)
+texture = ExtResource("13_xo05s")
+flip_h = true
+
+[node name="DoorCollider" type="CollisionShape2D" parent="Door" unique_id=35037088]
+position = Vector2(-2.5, 0)
+scale = Vector2(1, -1.3040001)
+shape = SubResource("RectangleShape2D_7r4gi")
+
+[node name="Stool" type="Sprite2D" parent="." unique_id=963726913]
+position = Vector2(18.000002, 198.00002)
+scale = Vector2(5, 5)
+texture = ExtResource("7_i7141")
+
+[node name="Bed" type="Sprite2D" parent="." unique_id=459307850]
+position = Vector2(210, 119.00001)
+scale = Vector2(15, 15)
+texture = ExtResource("9_7r4gi")
 
 [node name="Camera" type="Camera2D" parent="." unique_id=1646947253]
+
+[connection signal="interacted_with" from="Headlamp" to="Headlamp/HeadlampLight" method="toggle"]
+[connection signal="interacted_with" from="Outlet" to="Nightlamp/NightlampLight" method="toggle"]
+[connection signal="interacted_with" from="Outlet" to="Outlet/OutletWithWireSprite" method="toggle"]
+[connection signal="interacted_with" from="Outlet" to="Nightlamp/NightlampWithWireSprite" method="toggle"]
+[connection signal="interacted_with" from="Door" to="Door/ClosedDoorSprite" method="toggle"]
