@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://cat1bfjyr0syk"]
+
+[ext_resource type="FontFile" uid="uid://fq12vhva77fa" path="res://assets/fonts/public-pixel-font/PublicPixel-rv0pA.ttf" id="1_wfwb0"]
+[ext_resource type="Script" uid="uid://blcsro1o5rigv" path="res://scripts/death_timer/death_timer.gd" id="1_ygaog"]
+[ext_resource type="Script" uid="uid://cx814s86q7202" path="res://scripts/death_timer/death_timer_label.gd" id="2_ygaog"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wfwb0"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="DeathTimer" type="Control" unique_id=1265098953]
+layout_mode = 3
+anchor_right = 0.9984808
+anchor_bottom = 0.5972222
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ygaog")
+metadata/_edit_use_anchors_ = true
+
+[node name="Background" type="Panel" parent="." unique_id=440854061]
+layout_mode = 0
+offset_right = 365.1959
+offset_bottom = 123.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_wfwb0")
+
+[node name="TimerLabel" type="RichTextLabel" parent="Background" unique_id=1364731967]
+layout_mode = 0
+offset_right = 365.1959
+offset_bottom = 123.0
+theme_override_fonts/normal_font = ExtResource("1_wfwb0")
+theme_override_font_sizes/normal_font_size = 32
+text = "00.0000"
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("2_ygaog")
+
+[node name="Timer" type="Timer" parent="Background/TimerLabel" unique_id=1724274138]
+wait_time = 30.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Background/TimerLabel/Timer" to="." method="emit_timeout"]

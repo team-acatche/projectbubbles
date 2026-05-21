@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://bfa858e0cjs3r" path="res://assets/items/bed.png" id="9_7r4gi"]
 [ext_resource type="Texture2D" uid="uid://bd732jcfdbv5o" path="res://assets/items/outlet_with_plug.png" id="10_7t5mc"]
 [ext_resource type="Texture2D" uid="uid://dn11vl48ceacw" path="res://assets/items/open_door.png" id="13_xo05s"]
+[ext_resource type="PackedScene" uid="uid://cat1bfjyr0syk" path="res://scenes/DeathTimer.tscn" id="17_7t5mc"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nnsk1"]
 texture = ExtResource("1_nnsk1")
@@ -74,11 +75,9 @@ tile_set = SubResource("TileSet_k0juu")
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1423606406]
 color = Color(0.20152658, 0.20152658, 0.20152658, 1)
 
-[node name="Headlamp" type="StaticBody2D" parent="." unique_id=240002425 node_paths=PackedStringArray("collider_shape")]
+[node name="Headlamp" type="StaticBody2D" parent="." unique_id=240002425]
 material = SubResource("CanvasItemMaterial_k0juu")
 position = Vector2(0, -286)
-script = ExtResource("3_w7kh3")
-collider_shape = NodePath("HeadlampCollider")
 
 [node name="HeadlampLight" type="PointLight2D" parent="Headlamp" unique_id=1441454846]
 scale = Vector2(32.34764, 22.015623)
@@ -93,6 +92,11 @@ shape = SubResource("CircleShape2D_qfnet")
 scale = Vector2(5, 5)
 texture = ExtResource("6_qfnet")
 flip_h = true
+
+[node name="Interactible" type="Node2D" parent="Headlamp" unique_id=1307307621 node_paths=PackedStringArray("collider_shape")]
+visible = false
+script = ExtResource("3_w7kh3")
+collider_shape = NodePath("../HeadlampCollider")
 
 [node name="Nightlamp" type="StaticBody2D" parent="." unique_id=2005756852]
 material = SubResource("CanvasItemMaterial_k0juu")
@@ -130,11 +134,9 @@ scale = Vector2(5, 5)
 texture = ExtResource("4_71j4m")
 flip_h = true
 
-[node name="Outlet" type="StaticBody2D" parent="." unique_id=91285778 node_paths=PackedStringArray("collider_shape")]
+[node name="Outlet" type="StaticBody2D" parent="." unique_id=91285778]
 position = Vector2(-96, 182)
 scale = Vector2(4, 4)
-script = ExtResource("3_w7kh3")
-collider_shape = NodePath("OutletShape")
 
 [node name="OutletWithWireSprite" type="Sprite2D" parent="Outlet" unique_id=172076461 node_paths=PackedStringArray("alternative_sprite")]
 texture = ExtResource("10_7t5mc")
@@ -150,13 +152,16 @@ position = Vector2(0, 1)
 scale = Vector2(0.5, 0.5)
 shape = SubResource("CircleShape2D_7r4gi")
 
-[node name="Door" type="StaticBody2D" parent="." unique_id=487828073 node_paths=PackedStringArray("collider_shape")]
+[node name="Interactible" type="Node2D" parent="Outlet" unique_id=1551733604 node_paths=PackedStringArray("collider_shape")]
+visible = false
+script = ExtResource("3_w7kh3")
+collider_shape = NodePath("../OutletShape")
+
+[node name="Door" type="StaticBody2D" parent="." unique_id=487828073]
 material = SubResource("CanvasItemMaterial_k0juu")
 position = Vector2(465, 50.000004)
 scale = Vector2(2, 3)
 input_pickable = true
-script = ExtResource("3_w7kh3")
-collider_shape = NodePath("DoorCollider")
 
 [node name="ClosedDoorSprite" type="Sprite2D" parent="Door" unique_id=953339105 node_paths=PackedStringArray("alternative_sprite")]
 scale = Vector2(5, 5)
@@ -177,6 +182,11 @@ position = Vector2(-2.5, 0)
 scale = Vector2(1, -1.3040001)
 shape = SubResource("RectangleShape2D_7r4gi")
 
+[node name="Interactible" type="Node2D" parent="Door" unique_id=520603756 node_paths=PackedStringArray("collider_shape")]
+visible = false
+script = ExtResource("3_w7kh3")
+collider_shape = NodePath("../DoorCollider")
+
 [node name="Stool" type="Sprite2D" parent="." unique_id=963726913]
 position = Vector2(18.000002, 198.00002)
 scale = Vector2(5, 5)
@@ -187,10 +197,17 @@ position = Vector2(210, 119.00001)
 scale = Vector2(15, 15)
 texture = ExtResource("9_7r4gi")
 
+[node name="DeathTimer" parent="." unique_id=1265098953 instance=ExtResource("17_7t5mc")]
+offset_left = 211.0
+offset_top = -324.0
+offset_right = 211.0
+offset_bottom = -324.0
+
 [node name="Camera" type="Camera2D" parent="." unique_id=1646947253]
 
-[connection signal="interacted_with" from="Headlamp" to="Headlamp/HeadlampLight" method="toggle"]
-[connection signal="interacted_with" from="Outlet" to="Nightlamp/NightlampLight" method="toggle"]
-[connection signal="interacted_with" from="Outlet" to="Outlet/OutletWithWireSprite" method="toggle"]
-[connection signal="interacted_with" from="Outlet" to="Nightlamp/NightlampWithWireSprite" method="toggle"]
-[connection signal="interacted_with" from="Door" to="Door/ClosedDoorSprite" method="toggle"]
+[connection signal="interacted_with" from="Headlamp/Interactible" to="Headlamp/HeadlampLight" method="toggle"]
+[connection signal="interacted_with" from="Outlet/Interactible" to="Nightlamp/NightlampLight" method="toggle"]
+[connection signal="interacted_with" from="Outlet/Interactible" to="Nightlamp/NightlampWithWireSprite" method="toggle"]
+[connection signal="interacted_with" from="Outlet/Interactible" to="Outlet/OutletWithWireSprite" method="toggle"]
+[connection signal="interacted_with" from="Door/Interactible" to="Door/ClosedDoorSprite" method="toggle"]
+[connection signal="interacted_with" from="Door/Interactible" to="DeathTimer" method="end"]
