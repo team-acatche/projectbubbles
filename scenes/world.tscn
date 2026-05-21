@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://8ipst7b2hcob" path="res://assets/items/wire.png" id="8_dss4m"]
 [ext_resource type="Texture2D" uid="uid://bfa858e0cjs3r" path="res://assets/items/bed.png" id="9_7r4gi"]
 [ext_resource type="Texture2D" uid="uid://bd732jcfdbv5o" path="res://assets/items/outlet_with_plug.png" id="10_7t5mc"]
+[ext_resource type="Script" uid="uid://dv8kkxkwr7rgh" path="res://scripts/door.gd" id="13_lakw3"]
 [ext_resource type="Texture2D" uid="uid://dn11vl48ceacw" path="res://assets/items/open_door.png" id="13_xo05s"]
 [ext_resource type="PackedScene" uid="uid://cat1bfjyr0syk" path="res://scenes/DeathTimer.tscn" id="17_7t5mc"]
 
@@ -162,13 +163,12 @@ material = SubResource("CanvasItemMaterial_k0juu")
 position = Vector2(465, 50.000004)
 scale = Vector2(2, 3)
 input_pickable = true
+script = ExtResource("13_lakw3")
 
-[node name="ClosedDoorSprite" type="Sprite2D" parent="Door" unique_id=953339105 node_paths=PackedStringArray("alternative_sprite")]
+[node name="ClosedDoorSprite" type="Sprite2D" parent="Door" unique_id=953339105]
 scale = Vector2(5, 5)
 texture = ExtResource("6_4mrxx")
 flip_h = true
-script = ExtResource("7_o8fc1")
-alternative_sprite = NodePath("../OpenDoorSprite")
 
 [node name="OpenDoorSprite" type="Sprite2D" parent="Door" unique_id=569000589]
 visible = false
@@ -209,5 +209,7 @@ offset_bottom = -324.0
 [connection signal="interacted_with" from="Outlet/Interactible" to="Nightlamp/NightlampLight" method="toggle"]
 [connection signal="interacted_with" from="Outlet/Interactible" to="Nightlamp/NightlampWithWireSprite" method="toggle"]
 [connection signal="interacted_with" from="Outlet/Interactible" to="Outlet/OutletWithWireSprite" method="toggle"]
-[connection signal="interacted_with" from="Door/Interactible" to="Door/ClosedDoorSprite" method="toggle"]
 [connection signal="interacted_with" from="Door/Interactible" to="DeathTimer" method="end"]
+[connection signal="timeout" from="DeathTimer" to="Headlamp/Interactible" method="disable"]
+[connection signal="timeout" from="DeathTimer" to="Outlet/Interactible" method="disable"]
+[connection signal="timeout" from="DeathTimer" to="Door" method="open_door"]
