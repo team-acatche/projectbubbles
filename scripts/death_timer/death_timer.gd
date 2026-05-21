@@ -9,4 +9,3 @@ func emit_timeout() -> void:
 
 func end() -> void:
 	timer.stop()
-	timeout.emit()
