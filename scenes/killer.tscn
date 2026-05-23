@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://btoanb1mgpv2v"]
+
+[ext_resource type="Script" uid="uid://5has3piuh1d5" path="res://scripts/killer.gd" id="1_4tmj0"]
+[ext_resource type="Texture2D" uid="uid://3rw1ukhv08g7" path="res://assets/characters/killer/killer.png" id="1_jc8e8"]
+
+[node name="Killer" type="Node2D" unique_id=1494439005]
+script = ExtResource("1_4tmj0")
+
+[node name="KillerSprite" type="Sprite2D" parent="." unique_id=323818391]
+texture = ExtResource("1_jc8e8")

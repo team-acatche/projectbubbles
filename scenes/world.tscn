@@ -1,0 +1,258 @@
+[gd_scene format=4 uid="uid://bpi0u8t8vnyyt"]
+
+[ext_resource type="Texture2D" uid="uid://hre7en2j6oy5" path="res://assets/items/wall.png" id="1_nnsk1"]
+[ext_resource type="Texture2D" uid="uid://bj0ksyfkgx5dw" path="res://assets/BaT_v2.0/randomСolor/single_textures/texture185.png" id="2_rwgxs"]
+[ext_resource type="Script" uid="uid://b0kkvky4l1kkg" path="res://scripts/interactible.gd" id="3_w7kh3"]
+[ext_resource type="Texture2D" uid="uid://xlwoedhitk5x" path="res://assets/items/outlet.png" id="4_4mrxx"]
+[ext_resource type="Texture2D" uid="uid://dxsmt2ueyo43k" path="res://assets/items/nightlamp.png" id="4_71j4m"]
+[ext_resource type="Script" uid="uid://c1jesw05hr5vn" path="res://scripts/light_toggle.gd" id="5_e3hyu"]
+[ext_resource type="Texture2D" uid="uid://dlb6ten6li0s1" path="res://assets/items/door.png" id="6_4mrxx"]
+[ext_resource type="Texture2D" uid="uid://bldsrcv4n5om4" path="res://assets/items/nightstand.png" id="6_dss4m"]
+[ext_resource type="Texture2D" uid="uid://dati2joat0nxa" path="res://assets/items/headlamp.png" id="6_qfnet"]
+[ext_resource type="Texture2D" uid="uid://bdqt5egudp1ys" path="res://assets/items/stool.png" id="7_i7141"]
+[ext_resource type="Script" uid="uid://yia3j8tmgqx5" path="res://scripts/sprite_toggle.gd" id="7_o8fc1"]
+[ext_resource type="Texture2D" uid="uid://c2jfxrdne7tyk" path="res://assets/items/nightlamp_with_wire.png" id="7_xo05s"]
+[ext_resource type="Texture2D" uid="uid://8ipst7b2hcob" path="res://assets/items/wire.png" id="8_dss4m"]
+[ext_resource type="Texture2D" uid="uid://bfa858e0cjs3r" path="res://assets/items/bed.png" id="9_7r4gi"]
+[ext_resource type="Texture2D" uid="uid://bd732jcfdbv5o" path="res://assets/items/outlet_with_plug.png" id="10_7t5mc"]
+[ext_resource type="Script" uid="uid://dv8kkxkwr7rgh" path="res://scripts/door.gd" id="13_lakw3"]
+[ext_resource type="Texture2D" uid="uid://dn11vl48ceacw" path="res://assets/items/open_door.png" id="13_xo05s"]
+[ext_resource type="Texture2D" uid="uid://jj038sefugjf" path="res://assets/items/shelf.png" id="15_oo54l"]
+[ext_resource type="Texture2D" uid="uid://bj0v42giys8pg" path="res://assets/items/bat.png" id="16_kpybi"]
+[ext_resource type="PackedScene" uid="uid://btoanb1mgpv2v" path="res://scenes/killer.tscn" id="17_2lf6f"]
+[ext_resource type="PackedScene" uid="uid://cat1bfjyr0syk" path="res://scenes/DeathTimer.tscn" id="17_7t5mc"]
+[ext_resource type="PackedScene" uid="uid://blswh8qylsg4r" path="res://scenes/player.tscn" id="19_7iits"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nnsk1"]
+texture = ExtResource("1_nnsk1")
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_rwgxs"]
+sources/0 = SubResource("TileSetAtlasSource_nnsk1")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rwgxs"]
+texture = ExtResource("2_rwgxs")
+0:0/0 = 0
+1:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_k0juu"]
+sources/1 = SubResource("TileSetAtlasSource_rwgxs")
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_k0juu"]
+light_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_qfnet"]
+interpolation_mode = 2
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_i7141"]
+gradient = SubResource("Gradient_qfnet")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qfnet"]
+radius = 38.72752
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_71j4m"]
+radius = 34.0
+height = 96.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7r4gi"]
+radius = 15.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ctatt"]
+radius = 17.0
+height = 132.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7r4gi"]
+size = Vector2(96, 92)
+
+[node name="World" type="Node2D" unique_id=1337490270]
+
+[node name="Wallpaper" type="TileMapLayer" parent="." unique_id=1079568903]
+scale = Vector2(5, 5)
+tile_map_data = PackedByteArray("AAD4//v/AAAAAAAAAAD4//z/AAAAAAAAAAD4//3/AAAAAAAAAAD4//7/AAAAAAAAAAD4////AAAAAAAAAAD4/wAAAAAAAAAAAAD4/wEAAAAAAAAAAAD4/wIAAAAAAAAAAAD4/wMAAAAAAAAAAAD4/wQAAAAAAAAAAAD5//v/AAAAAAAAAAD5//z/AAAAAAAAAAD5//3/AAAAAAAAAAD5//7/AAAAAAAAAAD5////AAAAAAAAAAD5/wAAAAAAAAAAAAD5/wEAAAAAAAAAAAD5/wIAAAAAAAAAAAD5/wMAAAAAAAAAAAD5/wQAAAAAAAAAAAD6//v/AAAAAAAAAAD6//z/AAAAAAAAAAD6//3/AAAAAAAAAAD6//7/AAAAAAAAAAD6////AAAAAAAAAAD6/wAAAAAAAAAAAAD6/wEAAAAAAAAAAAD6/wIAAAAAAAAAAAD6/wMAAAAAAAAAAAD6/wQAAAAAAAAAAAD7//v/AAAAAAAAAAD7//z/AAAAAAAAAAD7//3/AAAAAAAAAAD7//7/AAAAAAAAAAD7////AAAAAAAAAAD7/wAAAAAAAAAAAAD7/wEAAAAAAAAAAAD7/wIAAAAAAAAAAAD7/wMAAAAAAAAAAAD7/wQAAAAAAAAAAAD8//v/AAAAAAAAAAD8//z/AAAAAAAAAAD8//3/AAAAAAAAAAD8//7/AAAAAAAAAAD8////AAAAAAAAAAD8/wAAAAAAAAAAAAD8/wEAAAAAAAAAAAD8/wIAAAAAAAAAAAD8/wMAAAAAAAAAAAD8/wQAAAAAAAAAAAD9//v/AAAAAAAAAAD9//z/AAAAAAAAAAD9//3/AAAAAAAAAAD9//7/AAAAAAAAAAD9////AAAAAAAAAAD9/wAAAAAAAAAAAAD9/wEAAAAAAAAAAAD9/wIAAAAAAAAAAAD9/wMAAAAAAAAAAAD9/wQAAAAAAAAAAAD+//v/AAAAAAAAAAD+//z/AAAAAAAAAAD+//3/AAAAAAAAAAD+//7/AAAAAAAAAAD+////AAAAAAAAAAD+/wAAAAAAAAAAAAD+/wEAAAAAAAAAAAD+/wIAAAAAAAAAAAD+/wMAAAAAAAAAAAD+/wQAAAAAAAAAAAD///v/AAAAAAAAAAD///z/AAAAAAAAAAD///3/AAAAAAAAAAD///7/AAAAAAAAAAD/////AAAAAAAAAAD//wEAAAAAAAAAAAD//wIAAAAAAAAAAAD//wMAAAAAAAAAAAD//wQAAAAAAAAAAAAAAPv/AAAAAAAAAAAAAPz/AAAAAAAAAAAAAP3/AAAAAAAAAAAAAP7/AAAAAAAAAAAAAP//AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAAQAAAAAAAAAAAABAPv/AAAAAAAAAAABAPz/AAAAAAAAAAABAP3/AAAAAAAAAAABAP7/AAAAAAAAAAABAAAAAAAAAAAAAAABAAEAAAAAAAAAAAABAAIAAAAAAAAAAAABAAMAAAAAAAAAAAABAAQAAAAAAAAAAAACAPv/AAAAAAAAAAACAPz/AAAAAAAAAAACAP3/AAAAAAAAAAACAP7/AAAAAAAAAAACAP//AAAAAAAAAAACAAAAAAAAAAAAAAACAAEAAAAAAAAAAAACAAIAAAAAAAAAAAACAAMAAAAAAAAAAAACAAQAAAAAAAAAAAADAPv/AAAAAAAAAAADAPz/AAAAAAAAAAADAP3/AAAAAAAAAAADAP7/AAAAAAAAAAADAP//AAAAAAAAAAADAAAAAAAAAAAAAAADAAEAAAAAAAAAAAADAAIAAAAAAAAAAAADAAMAAAAAAAAAAAADAAQAAAAAAAAAAAAEAPv/AAAAAAAAAAAEAPz/AAAAAAAAAAAEAP3/AAAAAAAAAAAEAP7/AAAAAAAAAAAEAP//AAAAAAAAAAAEAAAAAAAAAAAAAAAEAAEAAAAAAAAAAAAEAAIAAAAAAAAAAAAEAAMAAAAAAAAAAAAEAAQAAAAAAAAAAAAFAPv/AAAAAAAAAAAFAPz/AAAAAAAAAAAFAP3/AAAAAAAAAAAFAP7/AAAAAAAAAAAFAP//AAAAAAAAAAAFAAAAAAAAAAAAAAAFAAEAAAAAAAAAAAAFAAIAAAAAAAAAAAAFAAMAAAAAAAAAAAAFAAQAAAAAAAAAAAAGAPv/AAAAAAAAAAAGAPz/AAAAAAAAAAAGAP3/AAAAAAAAAAAGAP7/AAAAAAAAAAAGAP//AAAAAAAAAAAGAAAAAAAAAAAAAAAGAAEAAAAAAAAAAAAGAAIAAAAAAAAAAAAGAAMAAAAAAAAAAAAGAAQAAAAAAAAAAAAHAPv/AAAAAAAAAAAHAPz/AAAAAAAAAAAHAP3/AAAAAAAAAAAHAP7/AAAAAAAAAAAHAP//AAAAAAAAAAAHAAAAAAAAAAAAAAAHAAEAAAAAAAAAAAAHAAIAAAAAAAAAAAAHAAMAAAAAAAAAAAAHAAQAAAAAAAAAAAD//wAAAAAAAAAAAAABAP//AAAAAAAAAAA=")
+tile_set = SubResource("TileSet_rwgxs")
+
+[node name="Walls" type="TileMapLayer" parent="." unique_id=1570393871]
+scale = Vector2(2, 2)
+tile_map_data = PackedByteArray("AADu/wgAAQAAAAAAAADu/wkAAQAAAAEAAADv/wgAAQABAAAAAADv/wkAAQABAAEAAADu/woAAQAAAAAAAADv/woAAQABAAAAAADw/wgAAQAAAAAAAADw/wkAAQAAAAEAAADx/wgAAQABAAAAAADx/wkAAQABAAEAAADw/woAAQAAAAAAAADx/woAAQABAAAAAADy/wgAAQAAAAAAAADy/wkAAQAAAAEAAADz/wgAAQABAAAAAADz/wkAAQABAAEAAADy/woAAQAAAAAAAADz/woAAQABAAAAAAD0/wgAAQAAAAAAAAD0/wkAAQAAAAEAAAD1/wgAAQABAAAAAAD1/wkAAQABAAEAAAD0/woAAQAAAAAAAAD1/woAAQABAAAAAAD2/wgAAQAAAAAAAAD2/wkAAQAAAAEAAAD3/wgAAQABAAAAAAD3/wkAAQABAAEAAAD2/woAAQAAAAAAAAD3/woAAQABAAAAAAD4/wgAAQAAAAAAAAD4/wkAAQAAAAEAAAD5/wgAAQABAAAAAAD5/wkAAQABAAEAAAD4/woAAQAAAAAAAAD5/woAAQABAAAAAAD6/wgAAQAAAAAAAAD6/wkAAQAAAAEAAAD7/wgAAQABAAAAAAD7/wkAAQABAAEAAAD6/woAAQAAAAAAAAD7/woAAQABAAAAAAD8/wgAAQAAAAAAAAD8/wkAAQAAAAEAAAD9/wgAAQABAAAAAAD9/wkAAQABAAEAAAD8/woAAQAAAAAAAAD9/woAAQABAAAAAAD+/wgAAQAAAAAAAAD+/wkAAQAAAAEAAAD//wgAAQABAAAAAAD//wkAAQABAAEAAAD+/woAAQAAAAAAAAD//woAAQABAAAAAAAAAAgAAQAAAAAAAAAAAAkAAQAAAAEAAAABAAgAAQABAAAAAAABAAkAAQABAAEAAAAAAAoAAQAAAAAAAAABAAoAAQABAAAAAAACAAgAAQAAAAAAAAACAAkAAQAAAAEAAAADAAgAAQABAAAAAAADAAkAAQABAAEAAAACAAoAAQAAAAAAAAADAAoAAQABAAAAAAAEAAgAAQAAAAAAAAAEAAkAAQAAAAEAAAAFAAgAAQABAAAAAAAFAAkAAQABAAEAAAAEAAoAAQAAAAAAAAAFAAoAAQABAAAAAAAGAAgAAQAAAAAAAAAGAAkAAQAAAAEAAAAHAAgAAQABAAAAAAAHAAkAAQABAAEAAAAGAAoAAQAAAAAAAAAHAAoAAQABAAAAAAAIAAgAAQAAAAAAAAAIAAkAAQAAAAEAAAAJAAgAAQABAAAAAAAJAAkAAQABAAEAAAAIAAoAAQAAAAAAAAAJAAoAAQABAAAAAAAKAAgAAQAAAAAAAAAKAAkAAQAAAAEAAAALAAgAAQABAAAAAAALAAkAAQABAAEAAAAKAAoAAQAAAAAAAAALAAoAAQABAAAAAAAMAAgAAQAAAAAAAAAMAAkAAQAAAAEAAAANAAgAAQABAAAAAAANAAkAAQABAAEAAAAMAAoAAQAAAAAAAAANAAoAAQABAAAAAAAOAAgAAQAAAAAAAAAOAAkAAQAAAAEAAAAPAAgAAQABAAAAAAAPAAkAAQABAAEAAAAOAAoAAQAAAAAAAAAPAAoAAQABAAAAAAAQAAgAAQAAAAAAAAAQAAkAAQAAAAEAAAARAAgAAQABAAAAAAARAAkAAQABAAEAAAAQAAoAAQAAAAAAAAARAAoAAQABAAAAAADu/wcAAQAAAAEAAADv/wcAAQABAAEAAADw/wcAAQAAAAEAAADx/wcAAQABAAEAAADy/wcAAQAAAAEAAADz/wcAAQABAAEAAAD0/wcAAQAAAAEAAAD1/wcAAQABAAEAAAD2/wcAAQAAAAEAAAD3/wcAAQABAAEAAAD4/wcAAQAAAAEAAAD5/wcAAQABAAEAAAD6/wcAAQAAAAEAAAD7/wcAAQABAAEAAAD8/wcAAQAAAAEAAAD9/wcAAQABAAEAAAD+/wcAAQAAAAEAAAD//wcAAQABAAEAAAAAAAcAAQAAAAEAAAABAAcAAQABAAEAAAACAAcAAQAAAAEAAAADAAcAAQABAAEAAAAEAAcAAQAAAAEAAAAFAAcAAQABAAEAAAAGAAcAAQAAAAEAAAAHAAcAAQABAAEAAAAIAAcAAQAAAAEAAAAJAAcAAQABAAEAAAAKAAcAAQAAAAEAAAALAAcAAQABAAEAAAAMAAcAAQAAAAEAAAANAAcAAQABAAEAAAAOAAcAAQAAAAEAAAAPAAcAAQABAAEAAAAQAAcAAQAAAAEAAAARAAcAAQABAAEAAAA=")
+tile_set = SubResource("TileSet_k0juu")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1423606406]
+color = Color(0.20152658, 0.20152658, 0.20152658, 1)
+
+[node name="Stool" type="Sprite2D" parent="." unique_id=963726913]
+position = Vector2(18.000002, 198.00002)
+scale = Vector2(5, 5)
+texture = ExtResource("7_i7141")
+
+[node name="Bed" type="Sprite2D" parent="." unique_id=459307850]
+position = Vector2(210, 119.00001)
+scale = Vector2(15, 15)
+texture = ExtResource("9_7r4gi")
+
+[node name="Headlamp" type="StaticBody2D" parent="." unique_id=240002425]
+material = SubResource("CanvasItemMaterial_k0juu")
+position = Vector2(0, -286)
+
+[node name="HeadlampLight" type="PointLight2D" parent="Headlamp" unique_id=1441454846]
+scale = Vector2(32.34764, 22.015623)
+energy = 0.8
+texture = SubResource("GradientTexture2D_i7141")
+script = ExtResource("5_e3hyu")
+
+[node name="HeadlampCollider" type="CollisionShape2D" parent="Headlamp" unique_id=2128869690]
+shape = SubResource("CircleShape2D_qfnet")
+
+[node name="HeadlampSprite" type="Sprite2D" parent="Headlamp" unique_id=1998472072]
+scale = Vector2(5, 5)
+texture = ExtResource("6_qfnet")
+flip_h = true
+
+[node name="Interactible" type="Node2D" parent="Headlamp" unique_id=1307307621 node_paths=PackedStringArray("collider_shape")]
+visible = false
+script = ExtResource("3_w7kh3")
+collider_shape = NodePath("../HeadlampCollider")
+
+[node name="Nightlamp" type="StaticBody2D" parent="." unique_id=2005756852]
+material = SubResource("CanvasItemMaterial_k0juu")
+position = Vector2(-224, 54)
+input_pickable = true
+
+[node name="NightlampLight" type="PointLight2D" parent="Nightlamp" unique_id=1215991896]
+position = Vector2(-128.99998, 112)
+scale = Vector2(32.34764, 20.541222)
+energy = 0.6
+texture = SubResource("GradientTexture2D_i7141")
+script = ExtResource("5_e3hyu")
+
+[node name="NightstandSprite" type="Sprite2D" parent="Nightlamp" unique_id=1747574941]
+position = Vector2(0, 101)
+scale = Vector2(5, 12)
+texture = ExtResource("6_dss4m")
+
+[node name="NightlampCollider" type="CollisionShape2D" parent="Nightlamp" unique_id=1170759008]
+shape = SubResource("CapsuleShape2D_71j4m")
+
+[node name="NightlampWithWireSprite" type="Sprite2D" parent="Nightlamp" unique_id=266586318 node_paths=PackedStringArray("alternative_sprite")]
+scale = Vector2(5, 5)
+texture = ExtResource("7_xo05s")
+script = ExtResource("7_o8fc1")
+alternative_sprite = NodePath("../NightlampSprite")
+
+[node name="WireSprite" type="Sprite2D" parent="Nightlamp/NightlampWithWireSprite" unique_id=1590606321]
+position = Vector2(13.600002, 14.1361685)
+scale = Vector2(0.79999995, 0.79999995)
+texture = ExtResource("8_dss4m")
+
+[node name="NightlampSprite" type="Sprite2D" parent="Nightlamp" unique_id=1915874602]
+visible = false
+scale = Vector2(5, 5)
+texture = ExtResource("4_71j4m")
+flip_h = true
+
+[node name="Outlet" type="StaticBody2D" parent="." unique_id=91285778]
+position = Vector2(-96, 182)
+scale = Vector2(4, 4)
+
+[node name="OutletWithWireSprite" type="Sprite2D" parent="Outlet" unique_id=172076461 node_paths=PackedStringArray("alternative_sprite")]
+texture = ExtResource("10_7t5mc")
+script = ExtResource("7_o8fc1")
+alternative_sprite = NodePath("../OutletSprite")
+
+[node name="OutletSprite" type="Sprite2D" parent="Outlet" unique_id=666751696]
+visible = false
+texture = ExtResource("4_4mrxx")
+
+[node name="OutletShape" type="CollisionShape2D" parent="Outlet" unique_id=768519919]
+position = Vector2(0, 1)
+scale = Vector2(0.5, 0.5)
+shape = SubResource("CircleShape2D_7r4gi")
+
+[node name="Interactible" type="Node2D" parent="Outlet" unique_id=1551733604 node_paths=PackedStringArray("collider_shape")]
+visible = false
+script = ExtResource("3_w7kh3")
+collider_shape = NodePath("../OutletShape")
+
+[node name="Bat" type="StaticBody2D" parent="." unique_id=1652544966]
+position = Vector2(-423, 92)
+
+[node name="Shelf" type="Sprite2D" parent="Bat" unique_id=1863134048]
+scale = Vector2(10, 10)
+texture = ExtResource("15_oo54l")
+
+[node name="BatSprite" type="Sprite2D" parent="Bat" unique_id=303740256]
+position = Vector2(3.882263, 45.999996)
+rotation = 0.7853982
+scale = Vector2(5.9999995, 5.9999995)
+texture = ExtResource("16_kpybi")
+
+[node name="BatCollider" type="CollisionShape2D" parent="Bat" unique_id=1133359555]
+position = Vector2(1.8822632, 46)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_ctatt")
+
+[node name="Interactible" type="Node2D" parent="Bat" unique_id=420943157 node_paths=PackedStringArray("collider_shape")]
+visible = false
+script = ExtResource("3_w7kh3")
+collider_shape = NodePath("../BatCollider")
+
+[node name="Door" type="StaticBody2D" parent="." unique_id=487828073]
+material = SubResource("CanvasItemMaterial_k0juu")
+position = Vector2(465, 50.000004)
+scale = Vector2(2, 3)
+input_pickable = true
+script = ExtResource("13_lakw3")
+
+[node name="ClosedDoorSprite" type="Sprite2D" parent="Door" unique_id=953339105]
+scale = Vector2(5, 5)
+texture = ExtResource("6_4mrxx")
+flip_h = true
+
+[node name="OpenDoorSprite" type="Sprite2D" parent="Door" unique_id=569000589]
+visible = false
+position = Vector2(-2.5, -1.2715657e-06)
+scale = Vector2(4.82, 5)
+texture = ExtResource("13_xo05s")
+flip_h = true
+
+[node name="Killer" parent="Door" unique_id=1494439005 instance=ExtResource("17_2lf6f")]
+visible = false
+position = Vector2(-4.5, 13.666666)
+scale = Vector2(4, 2.668)
+
+[node name="DoorCollider" type="CollisionShape2D" parent="Door" unique_id=35037088]
+position = Vector2(-2.5, 0)
+scale = Vector2(1, -1.3040001)
+shape = SubResource("RectangleShape2D_7r4gi")
+
+[node name="Interactible" type="Node2D" parent="Door" unique_id=520603756 node_paths=PackedStringArray("collider_shape")]
+visible = false
+script = ExtResource("3_w7kh3")
+collider_shape = NodePath("../DoorCollider")
+
+[node name="Player" parent="." unique_id=402851905 instance=ExtResource("19_7iits")]
+position = Vector2(20, 132)
+scale = Vector2(10, 10)
+
+[node name="DeathTimer" parent="." unique_id=1265098953 instance=ExtResource("17_7t5mc")]
+offset_left = 211.0
+offset_top = -324.0
+offset_right = 211.0
+offset_bottom = -324.0
+
+[node name="Camera" type="Camera2D" parent="." unique_id=1646947253]
+
+[connection signal="interacted_with" from="Headlamp/Interactible" to="Headlamp/HeadlampLight" method="toggle"]
+[connection signal="interacted_with" from="Outlet/Interactible" to="Nightlamp/NightlampLight" method="toggle"]
+[connection signal="interacted_with" from="Outlet/Interactible" to="Nightlamp/NightlampWithWireSprite" method="toggle"]
+[connection signal="interacted_with" from="Outlet/Interactible" to="Outlet/OutletWithWireSprite" method="toggle"]
+[connection signal="interacted_with" from="Bat/Interactible" to="Bat/BatSprite" method="hide"]
+[connection signal="interacted_with" from="Bat/Interactible" to="Player" method="equip_bat"]
+[connection signal="interacted_with" from="Door/Interactible" to="DeathTimer" method="end"]
+[connection signal="timeout" from="DeathTimer" to="Headlamp/Interactible" method="disable"]
+[connection signal="timeout" from="DeathTimer" to="Outlet/Interactible" method="disable"]
+[connection signal="timeout" from="DeathTimer" to="Door" method="open_door"]
