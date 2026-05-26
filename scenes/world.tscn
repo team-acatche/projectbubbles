@@ -1,5 +1,6 @@
 [gd_scene format=4 uid="uid://bpi0u8t8vnyyt"]
 
+[ext_resource type="Script" uid="uid://cedpv2qu4jr1r" path="res://scripts/game_manager.gd" id="1_ctatt"]
 [ext_resource type="Texture2D" uid="uid://hre7en2j6oy5" path="res://assets/items/wall.png" id="1_nnsk1"]
 [ext_resource type="Texture2D" uid="uid://bj0ksyfkgx5dw" path="res://assets/BaT_v2.0/randomСolor/single_textures/texture185.png" id="2_rwgxs"]
 [ext_resource type="Script" uid="uid://b0kkvky4l1kkg" path="res://scripts/interactible.gd" id="3_w7kh3"]
@@ -72,6 +73,9 @@ size = Vector2(96, 92)
 
 [node name="World" type="Node2D" unique_id=1337490270]
 
+[node name="GameManager" type="Node" parent="." unique_id=416790043]
+script = ExtResource("1_ctatt")
+
 [node name="Wallpaper" type="TileMapLayer" parent="." unique_id=1079568903]
 scale = Vector2(5, 5)
 tile_map_data = PackedByteArray("AAD4//v/AAAAAAAAAAD4//z/AAAAAAAAAAD4//3/AAAAAAAAAAD4//7/AAAAAAAAAAD4////AAAAAAAAAAD4/wAAAAAAAAAAAAD4/wEAAAAAAAAAAAD4/wIAAAAAAAAAAAD4/wMAAAAAAAAAAAD4/wQAAAAAAAAAAAD5//v/AAAAAAAAAAD5//z/AAAAAAAAAAD5//3/AAAAAAAAAAD5//7/AAAAAAAAAAD5////AAAAAAAAAAD5/wAAAAAAAAAAAAD5/wEAAAAAAAAAAAD5/wIAAAAAAAAAAAD5/wMAAAAAAAAAAAD5/wQAAAAAAAAAAAD6//v/AAAAAAAAAAD6//z/AAAAAAAAAAD6//3/AAAAAAAAAAD6//7/AAAAAAAAAAD6////AAAAAAAAAAD6/wAAAAAAAAAAAAD6/wEAAAAAAAAAAAD6/wIAAAAAAAAAAAD6/wMAAAAAAAAAAAD6/wQAAAAAAAAAAAD7//v/AAAAAAAAAAD7//z/AAAAAAAAAAD7//3/AAAAAAAAAAD7//7/AAAAAAAAAAD7////AAAAAAAAAAD7/wAAAAAAAAAAAAD7/wEAAAAAAAAAAAD7/wIAAAAAAAAAAAD7/wMAAAAAAAAAAAD7/wQAAAAAAAAAAAD8//v/AAAAAAAAAAD8//z/AAAAAAAAAAD8//3/AAAAAAAAAAD8//7/AAAAAAAAAAD8////AAAAAAAAAAD8/wAAAAAAAAAAAAD8/wEAAAAAAAAAAAD8/wIAAAAAAAAAAAD8/wMAAAAAAAAAAAD8/wQAAAAAAAAAAAD9//v/AAAAAAAAAAD9//z/AAAAAAAAAAD9//3/AAAAAAAAAAD9//7/AAAAAAAAAAD9////AAAAAAAAAAD9/wAAAAAAAAAAAAD9/wEAAAAAAAAAAAD9/wIAAAAAAAAAAAD9/wMAAAAAAAAAAAD9/wQAAAAAAAAAAAD+//v/AAAAAAAAAAD+//z/AAAAAAAAAAD+//3/AAAAAAAAAAD+//7/AAAAAAAAAAD+////AAAAAAAAAAD+/wAAAAAAAAAAAAD+/wEAAAAAAAAAAAD+/wIAAAAAAAAAAAD+/wMAAAAAAAAAAAD+/wQAAAAAAAAAAAD///v/AAAAAAAAAAD///z/AAAAAAAAAAD///3/AAAAAAAAAAD///7/AAAAAAAAAAD/////AAAAAAAAAAD//wEAAAAAAAAAAAD//wIAAAAAAAAAAAD//wMAAAAAAAAAAAD//wQAAAAAAAAAAAAAAPv/AAAAAAAAAAAAAPz/AAAAAAAAAAAAAP3/AAAAAAAAAAAAAP7/AAAAAAAAAAAAAP//AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAAQAAAAAAAAAAAABAPv/AAAAAAAAAAABAPz/AAAAAAAAAAABAP3/AAAAAAAAAAABAP7/AAAAAAAAAAABAAAAAAAAAAAAAAABAAEAAAAAAAAAAAABAAIAAAAAAAAAAAABAAMAAAAAAAAAAAABAAQAAAAAAAAAAAACAPv/AAAAAAAAAAACAPz/AAAAAAAAAAACAP3/AAAAAAAAAAACAP7/AAAAAAAAAAACAP//AAAAAAAAAAACAAAAAAAAAAAAAAACAAEAAAAAAAAAAAACAAIAAAAAAAAAAAACAAMAAAAAAAAAAAACAAQAAAAAAAAAAAADAPv/AAAAAAAAAAADAPz/AAAAAAAAAAADAP3/AAAAAAAAAAADAP7/AAAAAAAAAAADAP//AAAAAAAAAAADAAAAAAAAAAAAAAADAAEAAAAAAAAAAAADAAIAAAAAAAAAAAADAAMAAAAAAAAAAAADAAQAAAAAAAAAAAAEAPv/AAAAAAAAAAAEAPz/AAAAAAAAAAAEAP3/AAAAAAAAAAAEAP7/AAAAAAAAAAAEAP//AAAAAAAAAAAEAAAAAAAAAAAAAAAEAAEAAAAAAAAAAAAEAAIAAAAAAAAAAAAEAAMAAAAAAAAAAAAEAAQAAAAAAAAAAAAFAPv/AAAAAAAAAAAFAPz/AAAAAAAAAAAFAP3/AAAAAAAAAAAFAP7/AAAAAAAAAAAFAP//AAAAAAAAAAAFAAAAAAAAAAAAAAAFAAEAAAAAAAAAAAAFAAIAAAAAAAAAAAAFAAMAAAAAAAAAAAAFAAQAAAAAAAAAAAAGAPv/AAAAAAAAAAAGAPz/AAAAAAAAAAAGAP3/AAAAAAAAAAAGAP7/AAAAAAAAAAAGAP//AAAAAAAAAAAGAAAAAAAAAAAAAAAGAAEAAAAAAAAAAAAGAAIAAAAAAAAAAAAGAAMAAAAAAAAAAAAGAAQAAAAAAAAAAAAHAPv/AAAAAAAAAAAHAPz/AAAAAAAAAAAHAP3/AAAAAAAAAAAHAP7/AAAAAAAAAAAHAP//AAAAAAAAAAAHAAAAAAAAAAAAAAAHAAEAAAAAAAAAAAAHAAIAAAAAAAAAAAAHAAMAAAAAAAAAAAAHAAQAAAAAAAAAAAD//wAAAAAAAAAAAAABAP//AAAAAAAAAAA=")
@@ -116,6 +120,7 @@ shape = SubResource("CircleShape2D_qfnet")
 [node name="Interactible" type="Node2D" parent="Headlamp" unique_id=1307307621 node_paths=PackedStringArray("collider_shape")]
 visible = false
 script = ExtResource("3_w7kh3")
+is_enabled = false
 collider_shape = NodePath("../HeadlampCollider")
 
 [node name="Nightlamp" type="StaticBody2D" parent="." unique_id=2005756852]
@@ -186,13 +191,13 @@ scale = Vector2(10, 10)
 texture = ExtResource("15_oo54l")
 
 [node name="BatSprite" type="Sprite2D" parent="Bat" unique_id=303740256]
-position = Vector2(3.882263, 45.999996)
+position = Vector2(1.8822631, 45.999996)
 rotation = 0.7853982
 scale = Vector2(5.9999995, 5.9999995)
 texture = ExtResource("16_kpybi")
 
 [node name="BatCollider" type="CollisionShape2D" parent="Bat" unique_id=1133359555]
-position = Vector2(1.8822632, 46)
+position = Vector2(-0.11773682, 46)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_ctatt")
 
@@ -221,10 +226,11 @@ scale = Vector2(4.82, 5)
 texture = ExtResource("13_xo05s")
 flip_h = true
 
-[node name="Killer" parent="Door" unique_id=1494439005 instance=ExtResource("17_2lf6f")]
+[node name="Killer" parent="Door" unique_id=1494439005 node_paths=PackedStringArray("death_screen") instance=ExtResource("17_2lf6f")]
 visible = false
 position = Vector2(-4.5, 13.666666)
 scale = Vector2(4, 2.668)
+death_screen = NodePath("../../DeathScreen")
 
 [node name="DoorCollider" type="CollisionShape2D" parent="Door" unique_id=35037088]
 position = Vector2(-3, 0)
@@ -270,6 +276,7 @@ script = ExtResource("23_kpybi")
 [connection signal="interacted_with" from="Outlet/Interactible" to="Nightlamp/NightlampLight" method="toggle"]
 [connection signal="interacted_with" from="Outlet/Interactible" to="Nightlamp/NightlampWithWireSprite" method="toggle"]
 [connection signal="interacted_with" from="Outlet/Interactible" to="Outlet/OutletWithWireSprite" method="toggle"]
+[connection signal="interacted_with" from="Bat/Interactible" to="Headlamp/Interactible" method="enable"]
 [connection signal="interacted_with" from="Bat/Interactible" to="Bat/BatSprite" method="hide"]
 [connection signal="interacted_with" from="Bat/Interactible" to="Player" method="equip_bat"]
 [connection signal="interacted_with" from="Door/Interactible" to="DeathTimer" method="end"]
