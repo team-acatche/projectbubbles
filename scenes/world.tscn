@@ -22,6 +22,7 @@
 [ext_resource type="PackedScene" uid="uid://btoanb1mgpv2v" path="res://scenes/killer.tscn" id="17_2lf6f"]
 [ext_resource type="PackedScene" uid="uid://cat1bfjyr0syk" path="res://scenes/DeathTimer.tscn" id="17_7t5mc"]
 [ext_resource type="PackedScene" uid="uid://blswh8qylsg4r" path="res://scenes/player.tscn" id="19_7iits"]
+[ext_resource type="Script" uid="uid://dxepy7hn1pgpp" path="res://scripts/death_screen.gd" id="23_kpybi"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nnsk1"]
 texture = ExtResource("1_nnsk1")
@@ -104,13 +105,13 @@ energy = 0.8
 texture = SubResource("GradientTexture2D_i7141")
 script = ExtResource("5_e3hyu")
 
-[node name="HeadlampCollider" type="CollisionShape2D" parent="Headlamp" unique_id=2128869690]
-shape = SubResource("CircleShape2D_qfnet")
-
 [node name="HeadlampSprite" type="Sprite2D" parent="Headlamp" unique_id=1998472072]
 scale = Vector2(5, 5)
 texture = ExtResource("6_qfnet")
 flip_h = true
+
+[node name="HeadlampCollider" type="CollisionShape2D" parent="Headlamp" unique_id=2128869690]
+shape = SubResource("CircleShape2D_qfnet")
 
 [node name="Interactible" type="Node2D" parent="Headlamp" unique_id=1307307621 node_paths=PackedStringArray("collider_shape")]
 visible = false
@@ -123,7 +124,7 @@ position = Vector2(-224, 54)
 input_pickable = true
 
 [node name="NightlampLight" type="PointLight2D" parent="Nightlamp" unique_id=1215991896]
-position = Vector2(-128.99998, 112)
+position = Vector2(-0.9999924, 1)
 scale = Vector2(32.34764, 20.541222)
 energy = 0.6
 texture = SubResource("GradientTexture2D_i7141")
@@ -200,12 +201,13 @@ visible = false
 script = ExtResource("3_w7kh3")
 collider_shape = NodePath("../BatCollider")
 
-[node name="Door" type="StaticBody2D" parent="." unique_id=487828073]
+[node name="Door" type="StaticBody2D" parent="." unique_id=487828073 node_paths=PackedStringArray("death_screen")]
 material = SubResource("CanvasItemMaterial_k0juu")
 position = Vector2(465, 50.000004)
 scale = Vector2(2, 3)
 input_pickable = true
 script = ExtResource("13_lakw3")
+death_screen = NodePath("../DeathScreen")
 
 [node name="ClosedDoorSprite" type="Sprite2D" parent="Door" unique_id=953339105]
 scale = Vector2(5, 5)
@@ -225,7 +227,7 @@ position = Vector2(-4.5, 13.666666)
 scale = Vector2(4, 2.668)
 
 [node name="DoorCollider" type="CollisionShape2D" parent="Door" unique_id=35037088]
-position = Vector2(-2.5, 0)
+position = Vector2(-3, 0)
 scale = Vector2(1, -1.3040001)
 shape = SubResource("RectangleShape2D_7r4gi")
 
@@ -243,6 +245,24 @@ offset_left = 211.0
 offset_top = -324.0
 offset_right = 211.0
 offset_bottom = -324.0
+
+[node name="DeathScreen" type="Control" parent="." unique_id=1340614175]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = -576.0
+offset_top = -324.0
+offset_right = -576.0
+offset_bottom = -324.0
+
+[node name="DeathScreenRect" type="ColorRect" parent="DeathScreen" unique_id=993005960]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("23_kpybi")
 
 [node name="Camera" type="Camera2D" parent="." unique_id=1646947253]
 

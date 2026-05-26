@@ -2,9 +2,37 @@
 
 [ext_resource type="Script" uid="uid://5has3piuh1d5" path="res://scripts/killer.gd" id="1_4tmj0"]
 [ext_resource type="Texture2D" uid="uid://3rw1ukhv08g7" path="res://assets/characters/killer/killer.png" id="1_jc8e8"]
+[ext_resource type="Texture2D" uid="uid://bprtb44me4m5u" path="res://assets/characters/killer/killer_side.png" id="3_hcaxd"]
+[ext_resource type="Texture2D" uid="uid://cpa1vmtsy6bcn" path="res://assets/characters/killer/killer_side_gun.png" id="4_u3xk2"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_28wgy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_jc8e8")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_jc8e8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_hcaxd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_u3xk2")
+}],
+"loop": false,
+"name": &"kill",
+"speed": 1.0
+}]
 
 [node name="Killer" type="Node2D" unique_id=1494439005]
 script = ExtResource("1_4tmj0")
 
-[node name="KillerSprite" type="Sprite2D" parent="." unique_id=323818391]
-texture = ExtResource("1_jc8e8")
+[node name="KillerSprite" type="AnimatedSprite2D" parent="." unique_id=734587681]
+sprite_frames = SubResource("SpriteFrames_28wgy")
+animation = &"kill"
