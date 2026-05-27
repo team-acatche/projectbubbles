@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://cedpv2qu4jr1r" path="res://scripts/game_manager.gd" id="1_ctatt"]
 [ext_resource type="Texture2D" uid="uid://hre7en2j6oy5" path="res://assets/items/wall.png" id="1_nnsk1"]
 [ext_resource type="Texture2D" uid="uid://bj0ksyfkgx5dw" path="res://assets/BaT_v2.0/randomСolor/single_textures/texture185.png" id="2_rwgxs"]
+[ext_resource type="AudioStream" uid="uid://dmp8xuw1fjrlq" path="res://resources/bgm.tres" id="2_xgqkh"]
 [ext_resource type="Script" uid="uid://b0kkvky4l1kkg" path="res://scripts/interactible.gd" id="3_w7kh3"]
 [ext_resource type="Texture2D" uid="uid://xlwoedhitk5x" path="res://assets/items/outlet.png" id="4_4mrxx"]
 [ext_resource type="Texture2D" uid="uid://dxsmt2ueyo43k" path="res://assets/items/nightlamp.png" id="4_71j4m"]
@@ -23,6 +24,7 @@
 [ext_resource type="PackedScene" uid="uid://btoanb1mgpv2v" path="res://scenes/killer.tscn" id="17_2lf6f"]
 [ext_resource type="PackedScene" uid="uid://cat1bfjyr0syk" path="res://scenes/DeathTimer.tscn" id="17_7t5mc"]
 [ext_resource type="PackedScene" uid="uid://blswh8qylsg4r" path="res://scenes/player.tscn" id="19_7iits"]
+[ext_resource type="AudioStream" uid="uid://xvhpoff5e02" path="res://resources/killer_death_music.tres" id="20_munwf"]
 [ext_resource type="Script" uid="uid://dxepy7hn1pgpp" path="res://scripts/death_screen.gd" id="23_kpybi"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nnsk1"]
@@ -75,6 +77,10 @@ size = Vector2(96, 92)
 
 [node name="GameManager" type="Node" parent="." unique_id=416790043]
 script = ExtResource("1_ctatt")
+
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="." unique_id=629363868]
+stream = ExtResource("2_xgqkh")
+autoplay = true
 
 [node name="Wallpaper" type="TileMapLayer" parent="." unique_id=1079568903]
 scale = Vector2(5, 5)
@@ -206,13 +212,17 @@ visible = false
 script = ExtResource("3_w7kh3")
 collider_shape = NodePath("../BatCollider")
 
-[node name="Door" type="StaticBody2D" parent="." unique_id=487828073 node_paths=PackedStringArray("death_screen")]
+[node name="Door" type="StaticBody2D" parent="." unique_id=487828073 node_paths=PackedStringArray("death_screen", "background_music")]
 material = SubResource("CanvasItemMaterial_k0juu")
 position = Vector2(465, 50.000004)
 scale = Vector2(2, 3)
 input_pickable = true
 script = ExtResource("13_lakw3")
 death_screen = NodePath("../DeathScreen")
+background_music = NodePath("../BackgroundMusic")
+
+[node name="KillerDeathMusic" type="AudioStreamPlayer" parent="Door" unique_id=1288044401]
+stream = ExtResource("20_munwf")
 
 [node name="ClosedDoorSprite" type="Sprite2D" parent="Door" unique_id=953339105]
 scale = Vector2(5, 5)

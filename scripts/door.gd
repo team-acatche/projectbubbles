@@ -8,8 +8,10 @@ class_name Door
 
 @onready var player: Player = $"../Player"
 @onready var killer: Killer = $Killer
+@onready var killer_death_music: AudioStreamPlayer = $KillerDeathMusic
 
 @export var death_screen: Control
+@export var background_music: AudioStreamPlayer
 
 const KILL_REACTION_TIMEOUT: float = 1
 const PLAYER_DEATH_SCREEN_TIMEOUT: float = 1.4
@@ -18,14 +20,17 @@ var timer: SceneTreeTimer = null
 
 func _process(_delta: float) -> void:
 	if timer != null and timer.time_left > 0 and killer.interactible.is_clicked:
+		background_music.stop()
 		timer = null
 		player.visible = false
+		killer_death_music.play()
 		kill_killer()
 		await get_tree().create_timer(SHOW_KILLER_DEATH_TIMEOUT).timeout
 		get_tree().quit()
 		return
 	
 	if timer != null and timer.time_left <= 0 and not killer.interactible.is_clicked:
+		killer.interactible.disable()
 		kill_player()
 
 func open_door() -> void:
