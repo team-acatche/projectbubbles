@@ -7,4 +7,4 @@ func _ready() -> void:
 	get_viewport().size_changed.connect(_on_viewport_size_changed)
 
 func _on_viewport_size_changed():
-	size = get_viewport_rect().size
+	set_deferred("size", get_viewport_rect().size)
